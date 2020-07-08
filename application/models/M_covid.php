@@ -19,6 +19,13 @@ class M_covid extends CI_Model {
 		return $r;
 	}
 
+	public function getJumlah()
+	{
+		$q = $this->db->query('SELECT SUM(pp) AS totalpp, SUM(odp) AS totalodp, SUM(pdp) AS totalpdp, SUM(otg) AS totalotg, SUM(positif) AS totalpositif FROM tbl_covid');
+		$r = $q->result();
+		$q->free_result();
+		return $r;
+	}
 }
 
 /* End of file M_covid.php */
