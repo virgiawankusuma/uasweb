@@ -12,9 +12,9 @@ const gagal = $('.gagal').data('gagal');
 if (gagal) {
 	Swal.fire({
 		icon: 'error',
-		title: 'Gagal...',
+		title: 'Error...',
 		customClass: 'swal-container',
-		html: 'Data gagal ' + gagal + '<span style="color:blue"> Coba pilih kecamatan lain!</span>'
+		html: 'Data ' + gagal + '!'
 	});
 }
 

@@ -29,6 +29,10 @@
                                             <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
                                                 <button type="submit" class="btn btn-primary btn-block">Login</button>
                                             </div>
+                                            <div class="form-group">
+                                                <p class="small text-center mb-0 mt-2">- OR -</p>
+                                                <a href="<?= base_url() ;?>" class="small nav-link text-center"><i class="fas fa-arrow-left"></i> Kembali ke home</a>
+                                            </div>
                                         </form>
                                     </div>
                                 </div>
