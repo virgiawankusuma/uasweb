@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 require_once APPPATH."/third_party/PHPExcel.php";
 require_once APPPATH."/third_party/PHPExcel/IOFactory.php";
-require (APPPATH. 'third_party/PHPExcel/Writer/Excel2007.php');
+require_once APPPATH."/third_party/PHPExcel/Writer/Excel2007.php";
 
 class Covid extends CI_Controller {
 
@@ -154,9 +154,14 @@ class Covid extends CI_Controller {
 	{	
 		$id = $this->input->post('id');
 		$this->db->where('id', $id);
-		$this->db->update('tbl_covid',$data);
-		$this->session->set_flashdata('flash', 'diubah');
-		redirect('covid/dashboard');
+		if ($id == null) {
+			$this->session->set_flashdata('gagal', 'yang diubah tidak ditemukan');
+			redirect('covid/dashboard');
+		}else{
+			$this->db->update('tbl_covid',$data);
+			$this->session->set_flashdata('flash', 'diubah');
+			redirect('covid/dashboard');
+		}
 	}
 	
 	//Delete
@@ -165,7 +170,7 @@ class Covid extends CI_Controller {
 		// $id = $this->uri->segment(3);
 		$this->db->where('id', $id);
 		if ($id == null) {
-			$this->session->set_flashdata('gagal', 'yang akaun dihapus tidak ditemukan');
+			$this->session->set_flashdata('gagal', 'yang dihapus tidak ditemukan');
 			redirect('covid/dashboard');
 		}else{
 			$this->db->delete('tbl_covid');
@@ -211,7 +216,7 @@ class Covid extends CI_Controller {
 			for ($row = 2; $row <= $highestRow; $row++){
 				$rowData = $sheet->rangeToArray('A'.$row.':'.$highestColumn.$row, NULL, TRUE, FALSE);
 				$data = array(
-					'id' => $rowData[0][0],
+					'id' => '',
 					'kecamatan' => strtolower($rowData[0][1]),
 					'pp' => $rowData[0][2],
 					'odp' => $rowData[0][3],
@@ -238,7 +243,7 @@ class Covid extends CI_Controller {
 		$object->getProperties()->setTitle('Data Covid Jepara');
 
 		$object->setActiveSheetIndex(0);
-		$object->getActiveSheet()->setCellValue('A1', 'ID');
+		$object->getActiveSheet()->setCellValue('A1', 'No');
 		$object->getActiveSheet()->setCellValue('B1', 'Kecamatan');
 		$object->getActiveSheet()->setCellValue('C1', 'PP');
 		$object->getActiveSheet()->setCellValue('D1', 'ODP');
@@ -248,9 +253,9 @@ class Covid extends CI_Controller {
 		$object->getActiveSheet()->setCellValue('H1', 'Tanggal');
 
 		$row = 2;
-
+		$no = 1;
 		foreach ($ikidata as $data => $d) {
-			$object->getActiveSheet()->setCellValue('A'.$row, $d->id);
+			$object->getActiveSheet()->setCellValue('A'.$row, $no++);
 			$object->getActiveSheet()->setCellValue('B'.$row, $d->kecamatan);
 			$object->getActiveSheet()->setCellValue('C'.$row, $d->pp);
 			$object->getActiveSheet()->setCellValue('D'.$row, $d->odp);
