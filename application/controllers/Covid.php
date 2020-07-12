@@ -33,7 +33,9 @@ class Covid extends CI_Controller {
         }else{
 			$data['judul'] = 'Dashboard - Jepara Tanggap COVID-19';
 			$data['ikidata'] = $this->M_covid->getData();
+			$data['ikitgl'] = $this->M_covid->getTgl();
 			$data['ikijumlah'] = $this->M_covid->getJumlah();
+			$data['ikijumlahtgl'] = $this->M_covid->getJumlahtgl();
 			$data['ikikecamatan'] = $this->M_covid->getKecamatan();
 
 			$this->load->view('template/header', $data);
@@ -104,7 +106,24 @@ class Covid extends CI_Controller {
 	// Insert
 	public function add()
 	{	
-		$this->form_validation->set_rules('kecamatan', 'kecamatan', 'trim|is_unique[tbl_covid.kecamatan]');
+		// $this->form_validation->set_rules('kecamatan', 'kecamatan', 'trim|is_unique[tbl_covid.kecamatan]');
+		// if (!$this->form_validation->run()) {
+		// 	$this->session->set_flashdata('gagal', 'gagal ditambahkan');
+		// 	redirect('covid/dashboard');
+		// }else{
+		// 	$data = array(
+		// 		'kecamatan' => $this->input->post('kecamatan'),
+		// 		'pp' => htmlspecialchars($this->input->post('pp')),
+		// 		'odp' => htmlspecialchars($this->input->post('odp')),
+		// 		'pdp' => htmlspecialchars($this->input->post('pdp')),
+		// 		'otg' => htmlspecialchars($this->input->post('otg')),
+		// 		'positif' => htmlspecialchars($this->input->post('positif')),
+		// 		'date' => htmlspecialchars($this->input->post('tanggal'))
+		// 		'date' => time()
+		// 	);
+		// 	$this->_insert($data);
+		// }	
+		$this->form_validation->set_rules('kecamatan', 'kecamatan', 'trim|required');
 		if (!$this->form_validation->run()) {
 			$this->session->set_flashdata('gagal', 'gagal ditambahkan');
 			redirect('covid/dashboard');
@@ -115,8 +134,9 @@ class Covid extends CI_Controller {
 				'odp' => htmlspecialchars($this->input->post('odp')),
 				'pdp' => htmlspecialchars($this->input->post('pdp')),
 				'otg' => htmlspecialchars($this->input->post('otg')),
-				'positif' => htmlspecialchars($this->input->post('positif')), 
-				'date' => time()
+				'positif' => htmlspecialchars($this->input->post('positif')),
+				'date' => htmlspecialchars($this->input->post('tanggal'))
+				// 'date' => time()
 			);
 			$this->_insert($data);
 		}
@@ -137,17 +157,33 @@ class Covid extends CI_Controller {
 		// 	$this->session->set_flashdata('gagal', 'gagal diubah');
 		// 	redirect('covid/dashboard');
 		// }else{
+		// 	$data = array(
+		// 		'kecamatan' => $this->input->post('kecamatan'),
+		// 		'pp' => htmlspecialchars($this->input->post('pp')),
+		// 		'odp' => htmlspecialchars($this->input->post('odp')),
+		// 		'pdp' => htmlspecialchars($this->input->post('pdp')),
+		// 		'otg' => htmlspecialchars($this->input->post('otg')),
+		// 		'positif' => htmlspecialchars($this->input->post('positif')), 
+		// 		'date' => time()
+		// 	);
+		// 	$this->_update($data);
+		// }
+		$this->form_validation->set_rules('kecamatan', 'kecamatan', 'trim|required');
+		if (!$this->form_validation->run()) {
+			$this->session->set_flashdata('gagal', 'gagal ditambahkan');
+			redirect('covid/dashboard');
+		}else{
 			$data = array(
 				'kecamatan' => $this->input->post('kecamatan'),
 				'pp' => htmlspecialchars($this->input->post('pp')),
 				'odp' => htmlspecialchars($this->input->post('odp')),
 				'pdp' => htmlspecialchars($this->input->post('pdp')),
 				'otg' => htmlspecialchars($this->input->post('otg')),
-				'positif' => htmlspecialchars($this->input->post('positif')), 
-				'date' => time()
+				'positif' => htmlspecialchars($this->input->post('positif')),
+				'date' => htmlspecialchars($this->input->post('tanggal'))
 			);
-			$this->_update($data);
-		// }
+			$this->_insert($data);
+		}
 	}
 
 	private function _update($data)
@@ -223,7 +259,8 @@ class Covid extends CI_Controller {
 					'pdp' => $rowData[0][4],
 					'otg' => $rowData[0][5],
 					'positif' => $rowData[0][6],
-					'date' => time()
+					'date' => $rowData[0][7]
+					// 'date' => time()
 				);
 				$this->db->insert('tbl_covid', $data);
 			}

@@ -28,19 +28,61 @@
                             <a class="btn btn-outline-success mb-3 float-right" href="<?= base_url('covid/export') ;?>">Export Excel</a>
                         </div>
                     </div>
-
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <div class="card mb-4">
-                                <div class="card-header">
-                                    <i class="fas fa-chart-area mr-1"></i>Grafik COVID19 Jepara
+                    
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-filter mr-1"></i>Filter Data
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <div class="col">
+                                    <label for="filtertgl" class="font-weight-bold">Pilih Tanggal *</label>
+                                    <select class="form-control" onchange="document.location.href=this.options[this.selectedIndex].value">
+                                        <option></option>
+                                        <option value="<?= base_url('covid/dashboard') ;?>">All</option>
+                                        <?php $songo=1;$songos = 1; while ( $songo <= 9 && $songos <= 9) { ?>
+                                        <option value="<?= base_url('covid/dashboard/0').$songo++ ;?>"><?= $songos++ ;?></option>
+                                        <?php } ?>
+                                        <?php $sepuluh=10;$sepuluhs = 10; while ( $sepuluh <= 31 && $sepuluhs <= 31) { ?>
+                                        <option value="<?= base_url('covid/dashboard/').$sepuluh++ ;?>"><?= $sepuluhs++ ;?></option>
+                                        <?php } ?>
+                                    </select>
                                 </div>
-                                <div class="card-body"><canvas id="myAreaChart" style="height:400px"></canvas></div>
+                                <div class="col">
+                                    <label for="filtertgl" class="font-weight-bold">Pilih Bulan *</label>
+                                    <?php 
+                                    $months = array(1 => 'Jan', 2 => 'Feb', 3 => 'Mar', 4 => 'Apr', 5 => 'May', 6 => 'Jun', 7 => 'Jul', 8 => 'Aug', 9 => 'Sep', 10 => 'Oct', 11 => 'Nov', 12 => 'Dec');
+                                    $transposed = array_slice($months, date('n'), 12, true) + array_slice($months, 0, date('n'), true);
+                                    $last8 = array_reverse(array_slice($transposed, -8, 12, true), true);
+                                    ?>
+                                    <select class="form-control" name="month" onchange="document.location.href=this.options[this.selectedIndex].value">
+                                        <option></option>
+                                        <option value="<?= base_url('covid/dashboard/').$this->uri->segment(3) ;?>">All</option>
+                                        <?php foreach ($months as $num => $name) { ?>
+                                        <option value="<?php echo base_url('covid/dashboard/'); echo $this->uri->segment(3).'/'.strtolower($name);?>"><?= $name ;?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
                             </div>
                         </div>
+
                     </div>
 
                     <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-chart-area mr-1"></i>Bars COVID19 Jepara
+                        </div>
+                        <div class="card-body"><canvas id="myBarChart" style="height:400px"></canvas></div>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-chart-area mr-1"></i>Grafik COVID19 Jepara
+                        </div>
+                        <div class="card-body"><canvas id="myAreaChart" style="height:400px"></canvas></div>
+                    </div>
+
+                    <!-- <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table mr-1"></i>Tabel Data COVID19 Jepara
                         </div>
@@ -100,6 +142,53 @@
                                 </table>
                             </div>
                         </div>
+                    </div> -->
+
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-table mr-1"></i>Tabel Data COVID19 Jepara
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Kecamatan</th>
+                                            <th>PP</th>
+                                            <th>ODP</th>
+                                            <th>PDP</th>
+                                            <th>OTG</th>
+                                            <th>Positif</th>
+                                            <th>Tanggal Update</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $id=1;foreach ($ikitgl as $data => $d) { ?>
+                                        <tr>
+                                            <td><?= $id++ ;?></td>
+                                            <td class="font-weight-bold text-primary text-uppercase"><?= $d->kecamatan ;?></td>
+                                            <td><?= $d->pp ;?></td>
+                                            <td><?= $d->odp ;?></td>
+                                            <td><?= $d->pdp ;?></td>
+                                            <td><?= $d->otg ;?></td>
+                                            <td><?= $d->positif ;?></td>
+                                            <td><?= $d->date;?></td>
+                                            <td>
+                                                <a class="btn btn-warning" data-toggle="modal" data-target="#update<?= $d->id ;?>">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <a class="btn btn-danger tombol-hapus" href="<?= base_url('covid/delete/'). $d->id ;?>">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </main>
@@ -150,6 +239,10 @@
 		  	<label class="font-weight-bold" for="positif">Positif</label>
 		  	<input type="number" class="form-control form-control-sm" id="positif" name="positif" placeholder="Positif Corona" required>
 		  </div>
+          <div class="form-group">
+            <label class="font-weight-bold" for="tanggal">Tanggal</label>
+            <input type="text" class="form-control form-control-sm" id="tanggal" name="tanggal" required value="<?= date('d-m-Y, H:i A') ;?>">
+          </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -207,6 +300,10 @@
           <div class="form-group">
             <label class="font-weight-bold" for="positif">Positif</label>
             <input type="number" class="form-control form-control-sm" id="positif" name="positif" placeholder="Positif Corona" value="<?= $d->positif ;?>" required>
+          </div>
+          <div class="form-group">
+            <label class="font-weight-bold" for="tanggal">Tanggal</label>
+            <input type="text" class="form-control form-control-sm" id="tanggal" name="tanggal" placeholder="Tanggal" value="<?= $d->date ;?>" required>
           </div>
       </div>
       <div class="modal-footer">

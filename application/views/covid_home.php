@@ -222,7 +222,8 @@
     </div>
 
     <div class="jumbotron mb-0">
-      <h2 class="justify-content-center text-center text-uppercase mb-5 pt-5" id="monioring">monitoring data covid-19 kabupaten jepara <p class="text-danger">update terakhir : <?php foreach ($ikijumlah as $jumlah => $j){ echo date('d M Y, h:i A' ,$j->terbaru);} ?></p></h2>
+      <!-- <h2 class="justify-content-center text-center text-uppercase mb-5 pt-5" id="monioring">monitoring data covid-19 kabupaten jepara <p class="text-danger">update terakhir : <?php foreach ($ikijumlah as $jumlah => $j){ echo date('d M Y, h:i A' ,$j->terbaru);} ?></p></h2> -->
+      <h2 class="justify-content-center text-center text-uppercase mb-5 pt-5" id="monioring">monitoring data covid-19 kabupaten jepara <p class="text-danger">update terakhir : <?php foreach ($ikijumlah as $jumlah => $j){ echo $j->terbaru;} ?></p></h2>
       <div class="row">
         <div class="col-xl-12">
 
@@ -297,67 +298,7 @@
               </div>
             </div>
           </div>
-
-          <!-- <div class="card mb-4">
-            <div class="card-header">
-              <i class="fas fa-chart-area mr-1"  id="grafik"></i>Grafik COVID-19 Jepara
-            </div>
-            <div class="card-body">
-              <canvas id="myAreaChart" width="100%" height="40"></canvas>
-            </div>
-          </div> -->
-
-          <!-- <div class="card mb-4">
-            <div class="card-header">
-              <i class="fas fa-table mr-1"  id="tabel"></i>Tabel Data COVID-19 Jepara
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>Kecamatan</th>
-                      <th>PP</th>
-                      <th>ODP</th>
-                      <th>PDP</th>
-                      <th>OTG</th>
-                      <th>Positif</th>
-                      <th>Tanggal Update</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php $id=1;foreach ($ikidata as $data => $d) { ?>
-                    <tr>
-                      <td><?= $id++ ;?></td>
-                      <td class="font-weight-bold text-primary text-uppercase"><?= $d->kecamatan ;?></td>
-                      <td><?= $d->pp ;?></td>
-                      <td><?= $d->odp ;?></td>
-                      <td><?= $d->pdp ;?></td>
-                      <td><?= $d->otg ;?></td>
-                      <td><?= $d->positif ;?></td>
-                      <td><?= date('d M Y, h:i A', $d->date);?></td>
-                    </tr>
-                    <?php } ?>
-                  </tbody>
-                  <tfoot>
-                    <?php foreach ($ikijumlah as $jumlah => $j){ ?>
-                    <tr>
-                      <th></th>
-                      <th>Jumlah</th>
-                      <th><?= $j->totalpp ;?></th>
-                      <th><?= $j->totalodp ;?></th>
-                      <th><?= $j->totalpdp ;?></th>
-                      <th><?= $j->totalotg ;?></th>
-                      <th><?= $j->totalpositif ;?></th>
-                      <th></th>
-                    </tr>
-                    <?php } ?>
-                  </tfoot>
-                </table>
-              </div>
-            </div>
-          </div> -->
+          
         </div>
       </div>
     </div>
