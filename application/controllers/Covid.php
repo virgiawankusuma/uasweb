@@ -262,7 +262,7 @@ class Covid extends CI_Controller {
 			$object->getActiveSheet()->setCellValue('E'.$row, $d->pdp);
 			$object->getActiveSheet()->setCellValue('F'.$row, $d->otg);
 			$object->getActiveSheet()->setCellValue('G'.$row, $d->positif);
-			$object->getActiveSheet()->setCellValue('H'.$row, date('d M Y, h:i A', $d->date));
+			$object->getActiveSheet()->setCellValue('H'.$row, date('d-M-Y, H:i', $d->date).' WIB');
 
 			$row++;
 		}

@@ -70,7 +70,7 @@
                                             <td><?= $d->pdp ;?></td>
                                             <td><?= $d->otg ;?></td>
                                             <td><?= $d->positif ;?></td>
-                                            <td><?= date('d M Y, h:i A', $d->date);?></td>
+                                            <td><?= date('d-M-Y, H:i', $d->date).' WIB';?></td>
                                             <td>
                                                 <a class="btn btn-warning" data-toggle="modal" data-target="#update<?= $d->id ;?>">
                                                     <i class="fas fa-edit"></i>

@@ -222,7 +222,7 @@
     </div>
 
     <div class="jumbotron mb-0">
-      <h2 class="justify-content-center text-center text-uppercase mb-5 pt-5" id="monioring">monitoring data covid-19 kabupaten jepara <p class="text-danger">update terakhir : <?php foreach ($ikijumlah as $jumlah => $j){ echo date('d M Y, h:i A' ,$j->terbaru);} ?></p></h2>
+      <h2 class="justify-content-center text-center text-uppercase mb-5 pt-5" id="monioring">monitoring data covid-19 kabupaten jepara <p class="text-danger">update terakhir : <?php foreach ($ikijumlah as $jumlah => $j){ echo date('d-M-Y, H:i ' ,$j->terbaru).' WIB';} ?></p></h2>
       <div class="row">
         <div class="col-xl-12">
 
@@ -273,7 +273,7 @@
                           <td><?= $d->pdp ;?></td>
                           <td><?= $d->otg ;?></td>
                           <td><?= $d->positif ;?></td>
-                          <td><?= date('d M Y, h:i A', $d->date);?></td>
+                          <td><?= date('d-M-Y, H:i', $d->date).' WIB';?></td>
                         </tr>
                         <?php } ?>
                       </tbody>
