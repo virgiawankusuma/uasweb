@@ -387,6 +387,114 @@
       Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
       Chart.defaults.global.defaultFontColor = '#292b2c';
 
+      // Bar chart
+      var ctx = document.getElementById("myAreaChart");
+      var myLineChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: [
+          <?php foreach ($ikidata as $data => $d) {
+            echo '"'.strtoupper($d->kecamatan).'", ';
+          } ?>
+          ],
+
+          datasets: [{
+          // label: "Pelaku Perjalanan",
+          label: "PP",
+          backgroundColor: "rgba(54, 162, 235, 0.2)",
+          borderColor: "rgba(54, 162, 235, 1)",
+          borderWidth: 1,
+          data: [ 
+          <?php foreach ($ikidata as $data => $d) {
+            echo $d->pp.', ';
+          } ?>
+          ]}, 
+          
+          {
+          // label: "Orang Dalam Pemantauan",
+          label: "ODP",
+          backgroundColor: "rgba(255, 236, 86, 0.2)",
+          borderColor: "rgba(255, 236, 86, 1)",
+          borderWidth: 1,
+          data: [ 
+          <?php foreach ($ikidata as $data => $d) {
+            echo $d->odp.', ';
+          } ?>
+          ]}, 
+
+          {
+          // label: "Pasien Dalam Pengawasan",
+          label: "PDP",
+          backgroundColor: "rgba(255, 159, 64, 0.2)",
+          borderColor: "rgba(255, 159, 64, 1)",
+          borderWidth: 1,
+          data: [ 
+          <?php foreach ($ikidata as $data => $d) {
+            echo $d->pdp.', ';
+          } ?>
+          ]}, 
+
+          {
+          // label: "Orang Tanpa Gejala",
+          label: "OTG",
+          backgroundColor: "rgb(56, 51, 255, 0.2)",
+          borderColor: "rgb(56, 51, 255, 1)",
+          borderWidth: 1,
+          data: [ 
+          <?php foreach ($ikidata as $data => $d) {
+            echo $d->otg.', ';
+          } ?>
+          ]},  
+
+          {
+          label: "Positif",
+          backgroundColor: "rgba(255, 99, 132, 0.2)",
+          borderColor: "rgba(255, 99, 132, 1)",
+          borderWidth: 1,
+          data: [ 
+          <?php foreach ($ikidata as $data => $d) {
+            echo $d->positif.', ';
+          } ?>
+          ]}, 
+
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            xAxes: [{
+              time: {
+                unit: 'date'
+              },
+              gridLines: {
+                display: true
+              },
+              ticks: {
+              }
+            }],
+
+            yAxes: [{
+              ticks: {
+                min: 0,
+              },
+              gridLines: {
+                color: "rgba(0, 0, 0, .125)",
+              }
+            }],
+          },
+
+          legend: {
+            display: true
+          }
+        }
+      });
+    </script>
+    <!-- <script type="text/javascript">
+      // Set new default font family and font color to mimic Bootstrap's default styling
+      Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+      Chart.defaults.global.defaultFontColor = '#292b2c';
+
       // Area Chart Example
       var ctx = document.getElementById("myAreaChart");
       var myLineChart = new Chart(ctx, {
@@ -519,6 +627,6 @@
           }
         }
       });
-    </script>
+    </script> -->
   </body>
 </html>
