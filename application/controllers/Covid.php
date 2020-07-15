@@ -1,8 +1,5 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-require_once APPPATH."/third_party/PHPExcel.php";
-require_once APPPATH."/third_party/PHPExcel/IOFactory.php";
-require_once APPPATH."/third_party/PHPExcel/Writer/Excel2007.php";
 
 class Covid extends CI_Controller {
 
@@ -125,7 +122,7 @@ class Covid extends CI_Controller {
 	private function _insert($data)
 	{	
 		$this->db->insert('tbl_covid', $data);
-		$this->session->set_flashdata('flash', 'ditambahkan');
+		$this->session->set_flashdata('berhasil', 'ditambahkan');
 		redirect('covid/dashboard');
 	}
 
@@ -159,7 +156,7 @@ class Covid extends CI_Controller {
 			redirect('covid/dashboard');
 		}else{
 			$this->db->update('tbl_covid',$data);
-			$this->session->set_flashdata('flash', 'diubah');
+			$this->session->set_flashdata('berhasil', 'diubah');
 			redirect('covid/dashboard');
 		}
 	}
@@ -174,7 +171,7 @@ class Covid extends CI_Controller {
 			redirect('covid/dashboard');
 		}else{
 			$this->db->delete('tbl_covid');
-			$this->session->set_flashdata('flash', 'dihapus');
+			$this->session->set_flashdata('berhasil', 'dihapus');
 			redirect('covid/dashboard');
 		}
 	}
@@ -227,7 +224,7 @@ class Covid extends CI_Controller {
 				);
 				$this->db->insert('tbl_covid', $data);
 			}
-			$this->session->set_flashdata('flash', 'diimport');
+			$this->session->set_flashdata('berhasil', 'diimport');
 			redirect('covid/dashboard','refresh');
 		}
 	}

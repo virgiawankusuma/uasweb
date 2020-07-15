@@ -1,10 +1,10 @@
-const flashdata = $('.flash-data').data('flashdata');
-if (flashdata) {
+const berhasil = $('.berhasil').data('berhasil');
+if (berhasil) {
 	Swal.fire({
 		icon: 'success',
 		title: 'Berhasil...',
 		customClass: 'swal-container',
-		text: 'Data berhasil ' + flashdata + '!'
+		text: 'Data berhasil ' + berhasil + '!'
 	});
 }
 

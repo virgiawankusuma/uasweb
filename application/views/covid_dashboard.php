@@ -5,10 +5,10 @@
             }
         </style>
 
-		<div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash');?>"></div>
-		<?php if ($this->session->flashdata('flash')): ?>
+		<div class="berhasil" data-berhasil="<?= $this->session->flashdata('berhasil');?>"></div><!-- 
+		<?php if ($this->session->flashdata('berhasil')): ?>
 		<?php endif ?>
-
+ -->
 		<div class="gagal" data-gagal="<?= $this->session->flashdata('gagal');?>"></div>
 		<?php if ($this->session->flashdata('gagal')): ?>
 		<?php endif ?>
@@ -35,7 +35,9 @@
                                 <div class="card-header">
                                     <i class="fas fa-chart-area mr-1"></i>Grafik COVID19 Jepara
                                 </div>
-                                <div class="card-body"><canvas id="myAreaChart" style="height:400px"></canvas></div>
+                                <div class="card-body">
+                                    <canvas id="myChart" style="height:400px"></canvas>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -166,7 +168,7 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Tambah data</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Update data</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

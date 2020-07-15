@@ -14,14 +14,14 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
   <script src="https://startbootstrap.github.io/startbootstrap-sb-admin/dist/js/scripts.js"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.0-alpha/Chart.js"></script>
   <!-- <script type="text/javascript">
     // Set new default font family and font color to mimic Bootstrap's default styling
     Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
     Chart.defaults.global.defaultFontColor = '#292b2c';
 
     // Area Chart Example
-    var ctx = document.getElementById("myAreaChart");
+    var ctx = document.getElementById("myChart");
     var myLineChart = new Chart(ctx, {
       type: 'line',
       data: {
@@ -155,12 +155,8 @@
     });
   </script> -->
   <script type="text/javascript">
-    // Set new default font family and font color to mimic Bootstrap's default styling
-    Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-    Chart.defaults.global.defaultFontColor = '#292b2c';
-
     // Bar chart
-    var ctx = document.getElementById("myAreaChart");
+    var ctx = document.getElementById("myChart");
     var myLineChart = new Chart(ctx, {
       type: 'bar',
       data: {
@@ -266,11 +262,15 @@
   <!-- datatables -->
   <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
   <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-  <script src="https://startbootstrap.github.io/startbootstrap-sb-admin/dist/assets/demo/datatables-demo.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#dataTable').DataTable();
+    });
+  </script>
 
   <!-- sweetalert -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/> -->
   <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
   <script type="text/javascript" src="<?= base_url('assets') ;?>/script.js"></script>
 </body>

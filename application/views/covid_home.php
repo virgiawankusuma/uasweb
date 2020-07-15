@@ -380,7 +380,11 @@
     <!-- datatables -->
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-    <script src="https://startbootstrap.github.io/startbootstrap-sb-admin/dist/assets/demo/datatables-demo.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('#dataTable').DataTable();
+      });
+    </script>
 
     <script type="text/javascript">
       // Set new default font family and font color to mimic Bootstrap's default styling
