@@ -53,7 +53,6 @@ class Covid extends CI_Controller {
 				$this->load->view('covid_login', $data);
 				$this->load->view('template/footer');
 			}else{
-				// validasi sukses
 				$this->_login();
 			}
 		}else{
@@ -129,22 +128,16 @@ class Covid extends CI_Controller {
 	//Update
 	public function update()
 	{	
-		// $this->form_validation->set_rules('kecamatan', 'kecamatan', 'trim|is_unique[tbl_covid.kecamatan]');
-		// if (!$this->form_validation->run()) {
-		// 	$this->session->set_flashdata('gagal', 'gagal diubah');
-		// 	redirect('covid/dashboard');
-		// }else{
-			$data = array(
-				'kecamatan' => $this->input->post('kecamatan'),
-				'pp' => htmlspecialchars($this->input->post('pp')),
-				'odp' => htmlspecialchars($this->input->post('odp')),
-				'pdp' => htmlspecialchars($this->input->post('pdp')),
-				'otg' => htmlspecialchars($this->input->post('otg')),
-				'positif' => htmlspecialchars($this->input->post('positif')), 
-				'date' => time()
-			);
-			$this->_update($data);
-		// }
+		$data = array(
+			'kecamatan' => $this->input->post('kecamatan'),
+			'pp' => htmlspecialchars($this->input->post('pp')),
+			'odp' => htmlspecialchars($this->input->post('odp')),
+			'pdp' => htmlspecialchars($this->input->post('pdp')),
+			'otg' => htmlspecialchars($this->input->post('otg')),
+			'positif' => htmlspecialchars($this->input->post('positif')), 
+			'date' => time()
+		);
+		$this->_update($data);
 	}
 
 	private function _update($data)
@@ -164,7 +157,6 @@ class Covid extends CI_Controller {
 	//Delete
 	public function delete($id='')
 	{	
-		// $id = $this->uri->segment(3);
 		$this->db->where('id', $id);
 		if ($id == null) {
 			$this->session->set_flashdata('gagal', 'yang dihapus tidak ditemukan');

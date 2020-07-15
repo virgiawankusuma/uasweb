@@ -1,10 +1,6 @@
     <div class="logout" data-logout="<?= $this->session->flashdata('logout'); ?>"></div>
-    <?php if ($this->session->flashdata('logout')): ?>
-    <?php endif ?>
-
     <div class="validlogin" data-validlogin="<?= $this->session->flashdata('validlogin'); ?>"></div>
-    <?php if ($this->session->flashdata('validlogin')): ?>
-    <?php endif ?>
+    
     <body class="bg-light">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">

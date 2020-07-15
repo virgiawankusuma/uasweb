@@ -3,7 +3,6 @@ if (berhasil) {
 	Swal.fire({
 		icon: 'success',
 		title: 'Berhasil...',
-		customClass: 'swal-container',
 		text: 'Data berhasil ' + berhasil + '!'
 	});
 }
@@ -13,7 +12,6 @@ if (gagal) {
 	Swal.fire({
 		icon: 'error',
 		title: 'Error...',
-		customClass: 'swal-container',
 		html: 'Data ' + gagal + '!'
 	});
 }
@@ -24,7 +22,6 @@ if (logout) {
 	  icon: 'warning',
 	  title: logout + ' !',
 	  showConfirmButton: false,
-	  customClass: 'swal-container',
 	  timer: 2000
 	})
 }
@@ -35,7 +32,6 @@ if (validlogin) {
 	  icon: 'error',
 	  title: validlogin,
 	  showConfirmButton: false,
-	  customClass: 'swal-container',
 	  timer: 2000
 	})
 }
@@ -53,7 +49,6 @@ $('.tombol-hapus').on('click', function (e){
 	  showCancelButton: true,
 	  confirmButtonColor: '#3085d6',
 	  cancelButtonColor: '#d33',
-	  customClass: 'swal-container',
 	  confirmButtonText: 'Ya, hapus data!'
 	}).then((result) => {
 	  if (result.value) {

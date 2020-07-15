@@ -5,13 +5,8 @@
             }
         </style>
 
-		<div class="berhasil" data-berhasil="<?= $this->session->flashdata('berhasil');?>"></div><!-- 
-		<?php if ($this->session->flashdata('berhasil')): ?>
-		<?php endif ?>
- -->
+		<div class="berhasil" data-berhasil="<?= $this->session->flashdata('berhasil');?>"></div>
 		<div class="gagal" data-gagal="<?= $this->session->flashdata('gagal');?>"></div>
-		<?php if ($this->session->flashdata('gagal')): ?>
-		<?php endif ?>
 
         <div id="layoutSidenav_content">
             <main>
@@ -126,7 +121,6 @@
 		    	<option name="kecamatan" value="<?= $k->kecamatan ;?>"><?= $k->kecamatan ;?></option>
 		    	<?php } ?>
 		    </select>
-            <small><?php $this->session->flashdata('gagal'); ?></small>
 		  </div>
 		  <div class="form-group row">
 		  	<div class="col">
@@ -179,12 +173,6 @@
             <input type="hidden" name="id" value="<?= $d->id ;?>">
             <label class="font-weight-bold" for="kecamatan">Kecamatan</label>
             <input class="form-control form-control-sm" id="kecamatan" name="kecamatan" value="<?= $d->kecamatan ;?>" required readonly onclick="Swal.fire('Maaf...', 'Anda tidak bisa mengubah kecamatan!', 'error')">
-            <!-- <select class="form-control form-control-sm" id="kecamatan" name="kecamatan" required readonly>
-                <option value="<?= $d->kecamatan ;?>"><?= $d->kecamatan ;?></option>
-                <?php foreach ($ikikecamatan as $kec => $k) { ?>
-                <option name="kecamatan" value="<?= $k->kecamatan ;?>"><?= $k->kecamatan ;?></option>
-                <?php } ?>
-            </select> -->
           </div>
           <div class="form-group row">
             <div class="col">

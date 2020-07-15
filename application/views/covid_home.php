@@ -39,7 +39,7 @@
           <a class="nav-item nav-link ml-3 mr-3 text-uppercase" href="#">Home <span class="sr-only">(current)</span></a>
           <a class="nav-item nav-link ml-3 mr-3 text-uppercase" href="#info">Informasi</a>
           <a class="nav-item nav-link ml-3 mr-3 text-uppercase" href="#monioring">Monitoring Data</a>
-          <a class="nav-item nav-link ml-3 mr-3 text-uppercase" href="<?= base_url('login') ;?>">Dashboard</a>
+          <a class="nav-item nav-link ml-3 mr-3 text-uppercase" href="<?= base_url('covid/login') ;?>">Dashboard</a>
         </div>
       </div>
     </nav>
@@ -298,66 +298,12 @@
             </div>
           </div>
 
-          <!-- <div class="card mb-4">
-            <div class="card-header">
-              <i class="fas fa-chart-area mr-1"  id="grafik"></i>Grafik COVID-19 Jepara
-            </div>
-            <div class="card-body">
-              <canvas id="myAreaChart" width="100%" height="40"></canvas>
-            </div>
-          </div> -->
+        </div>
+      </div>
 
-          <!-- <div class="card mb-4">
-            <div class="card-header">
-              <i class="fas fa-table mr-1"  id="tabel"></i>Tabel Data COVID-19 Jepara
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>Kecamatan</th>
-                      <th>PP</th>
-                      <th>ODP</th>
-                      <th>PDP</th>
-                      <th>OTG</th>
-                      <th>Positif</th>
-                      <th>Tanggal Update</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php $id=1;foreach ($ikidata as $data => $d) { ?>
-                    <tr>
-                      <td><?= $id++ ;?></td>
-                      <td class="font-weight-bold text-primary text-uppercase"><?= $d->kecamatan ;?></td>
-                      <td><?= $d->pp ;?></td>
-                      <td><?= $d->odp ;?></td>
-                      <td><?= $d->pdp ;?></td>
-                      <td><?= $d->otg ;?></td>
-                      <td><?= $d->positif ;?></td>
-                      <td><?= date('d M Y, h:i A', $d->date);?></td>
-                    </tr>
-                    <?php } ?>
-                  </tbody>
-                  <tfoot>
-                    <?php foreach ($ikijumlah as $jumlah => $j){ ?>
-                    <tr>
-                      <th></th>
-                      <th>Jumlah</th>
-                      <th><?= $j->totalpp ;?></th>
-                      <th><?= $j->totalodp ;?></th>
-                      <th><?= $j->totalpdp ;?></th>
-                      <th><?= $j->totalotg ;?></th>
-                      <th><?= $j->totalpositif ;?></th>
-                      <th></th>
-                    </tr>
-                    <?php } ?>
-                  </tfoot>
-                </table>
-              </div>
-            </div>
-          </div> -->
+      <div class="row">
+        <div class="col">
+          <a href="<?= base_url('covid/export') ;?>" class="btn btn-block btn-outline-success">Export data</a>
         </div>
       </div>
     </div>
@@ -494,143 +440,5 @@
         }
       });
     </script>
-    <!-- <script type="text/javascript">
-      // Set new default font family and font color to mimic Bootstrap's default styling
-      Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-      Chart.defaults.global.defaultFontColor = '#292b2c';
-
-      // Area Chart Example
-      var ctx = document.getElementById("myAreaChart");
-      var myLineChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: [
-          <?php foreach ($ikidata as $data => $d) {
-            echo '"'.strtoupper($d->kecamatan).'", ';
-          } ?>
-          ],
-
-          datasets: [{
-          // label: "Pelaku Perjalanan",
-          label: "PP",
-          lineTension: 0.3,
-          backgroundColor: "rgba(54, 162, 235, 0.2)",
-          borderColor: "rgba(54, 162, 235, 1)",
-          pointRadius: 5,
-          pointBackgroundColor: "rgba(54, 162, 235, 1)",
-          pointBorderColor: "rgba(255,255,255,0.8)",
-          pointHoverRadius: 5,
-          pointHitRadius: 50,
-          pointBorderWidth: 2,
-          data: [ 
-          <?php foreach ($ikidata as $data => $d) {
-            echo $d->pp.', ';
-          } ?>
-          ]}, 
-          
-          {
-          // label: "Orang Dalam Pemantauan",
-          label: "ODP",
-          lineTension: 0.3,
-          backgroundColor: "rgba(255, 236, 86, 0.2)",
-          borderColor: "rgba(255, 236, 86, 1)",
-          pointRadius: 5,
-          pointBackgroundColor: "rgba(255, 236, 86, 1)",
-          pointBorderColor: "rgba(255,255,255,0.8)",
-          pointHoverRadius: 5,
-          pointHitRadius: 50,
-          pointBorderWidth: 2,
-          data: [ 
-          <?php foreach ($ikidata as $data => $d) {
-            echo $d->odp.', ';
-          } ?>
-          ]}, 
-
-          {
-          // label: "Pasien Dalam Pengawasan",
-          label: "PDP",
-          lineTension: 0.3,
-          backgroundColor: "rgba(255, 159, 64, 0.2)",
-          borderColor: "rgba(255, 159, 64, 1)",
-          pointRadius: 5,
-          pointBackgroundColor: "rgba(255, 159, 64, 1)",
-          pointBorderColor: "rgba(255,255,255,0.8)",
-          pointHoverRadius: 5,
-          pointHitRadius: 50,
-          pointBorderWidth: 2,
-          data: [ 
-          <?php foreach ($ikidata as $data => $d) {
-            echo $d->pdp.', ';
-          } ?>
-          ]}, 
-
-          {
-          // label: "Orang Tanpa Gejala",
-          label: "OTG",
-          lineTension: 0.3,
-          backgroundColor: "rgb(56, 51, 255, 0.2)",
-          borderColor: "rgb(56, 51, 255, 1)",
-          pointRadius: 5,
-          pointBackgroundColor: "rgb(56, 51, 255, 1)",
-          pointBorderColor: "rgba(255,255,255,0.8)",
-          pointHoverRadius: 5,
-          pointHitRadius: 50,
-          pointBorderWidth: 2,
-          data: [ 
-          <?php foreach ($ikidata as $data => $d) {
-            echo $d->otg.', ';
-          } ?>
-          ]},  
-
-          {
-          label: "Positif",
-          lineTension: 0.3,
-          backgroundColor: "rgba(255, 99, 132, 0.2)",
-          borderColor: "rgba(255, 99, 132, 1)",
-          pointRadius: 5,
-          pointBackgroundColor: "rgba(255, 99, 132, 1)",
-          pointBorderColor: "rgba(255,255,255,0.8)",
-          pointHoverRadius: 5,
-          pointHitRadius: 50,
-          pointBorderWidth: 2,
-          data: [ 
-          <?php foreach ($ikidata as $data => $d) {
-            echo $d->positif.', ';
-          } ?>
-          ]}, 
-
-          ],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          scales: {
-            xAxes: [{
-              time: {
-                unit: 'date'
-              },
-              gridLines: {
-                display: false
-              },
-              ticks: {
-              }
-            }],
-
-            yAxes: [{
-              ticks: {
-                min: 0,
-              },
-              gridLines: {
-                color: "rgba(0, 0, 0, .125)",
-              }
-            }],
-          },
-
-          legend: {
-            display: true
-          }
-        }
-      });
-    </script> -->
   </body>
 </html>
